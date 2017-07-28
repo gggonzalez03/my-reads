@@ -16,7 +16,9 @@ const Book = ({ bookTitle, bookAuthors, bookCoverURL }) => (
       </div>
     </div>
     <div className="book-title">{bookTitle}</div>
-    <div className="book-authors">{bookAuthors}</div>
+    <div className="book-authors">
+      {bookAuthors.map((author, index) => `${author}${index==bookAuthors.length-1 ? "" : ", "}`)}
+    </div>
   </div>
 )
 

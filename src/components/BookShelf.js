@@ -12,7 +12,7 @@ const BookShelf = ({ bookShelfTitle, books }) => (
           <li key={book.id}>
             <Book
               bookTitle={book.title}
-              bookAuthors={book.authors[0]}
+              bookAuthors={book.authors}
               bookCoverURL={book.imageLinks.smallThumbnail}
             />
           </li>
