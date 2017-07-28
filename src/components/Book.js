@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Book = ({ bookTitle, bookAuthors, bookCover }) => (
+const Book = ({ bookTitle, bookAuthors, bookCoverURL }) => (
   <div className="book">
     <div className="book-top">
-      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${bookCover}")` }}></div>
+      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${bookCoverURL}")` }}></div>
       <div className="book-shelf-changer">
         <select>
           <option value="none" disabled>Move to...</option>
