@@ -12,15 +12,15 @@ const AllBooks = ({books}) => (
       <div>
         <BookShelf
           bookShelfTitle={"Currently Reading"}
-          books={books.filter((book) => book.shelf == "currentlyReading")}
+          books={books.filter((book) => book.shelf === "currentlyReading")}
         />
         <BookShelf
           bookShelfTitle={"Want To Read"}
-          books={books.filter((book) => book.shelf == "wantToRead")}
+          books={books.filter((book) => book.shelf === "wantToRead")}
         />
         <BookShelf
           bookShelfTitle={"Read"}
-          books={books.filter((book) => book.shelf == "read")}
+          books={books.filter((book) => book.shelf === "read")}
         />
       </div>
     </div>

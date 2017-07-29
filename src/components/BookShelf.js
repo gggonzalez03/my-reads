@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Book from './Book'
 
@@ -14,6 +13,7 @@ const BookShelf = ({ bookShelfTitle, books }) => (
               bookTitle={book.title}
               bookAuthors={book.authors}
               bookCoverURL={book.imageLinks.smallThumbnail}
+              shelf={book.shelf}
             />
           </li>
         ))}
