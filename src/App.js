@@ -7,12 +7,19 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+  }
+
+  changeBookShelf = (book, newShelf) => {
+    BooksAPI.update(book, newShelf)
+    book.shelf = newShelf
+    this.setState((state) => ({
+      books: [...state.books.filter((b) => book.id !== b.id), book]
+    }))
   }
 
   componentDidMount = () => {
     BooksAPI.getAll().then((books) => {
-      console.log(books);
       this.setState({books});
     })
   };
@@ -22,7 +29,12 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route exact
           path='/'          
-          render={() => (<AllBooks books={this.state.books}/>)}
+          render={() => (
+            <AllBooks
+              books={this.state.books}
+              changeBookShelf={this.changeBookShelf}
+            />
+          )}
         />
         <Route exact
           path='/addbook'          

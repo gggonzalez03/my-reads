@@ -2,7 +2,7 @@ import React from 'react'
 
 import Book from './Book'
 
-const BookShelf = ({ bookShelfTitle, books }) => (
+const BookShelf = ({ bookShelfTitle, books, changeBookShelf }) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{bookShelfTitle}</h2>
     <div className="bookshelf-books">
@@ -10,10 +10,8 @@ const BookShelf = ({ bookShelfTitle, books }) => (
         {books.map((book) => (
           <li key={book.id}>
             <Book
-              bookTitle={book.title}
-              bookAuthors={book.authors}
-              bookCoverURL={book.imageLinks.smallThumbnail}
-              shelf={book.shelf}
+              book={book}
+              changeBookShelf={changeBookShelf}
             />
           </li>
         ))}
