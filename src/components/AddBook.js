@@ -12,13 +12,17 @@ class AddBook extends Component {
 
   updateQuery = (query) => {
     this.setState({ query })
+    this.search(query)
+  }
 
-    BooksAPI.search(query?query:' ', 5).then((books) => {
-      if(books && !books.error)
-        this.setState({showingBooks:books})
-      else
-        this.setState({showingBooks: null})
-    })
+  search = (query) => {
+    if(query)
+      BooksAPI.search(query, 5).then((books) => {
+        if(books && !books.error)
+          this.setState({showingBooks:books})
+      })
+    else 
+      this.setState({showingBooks: null})
   }
 
   render() {
@@ -42,7 +46,7 @@ class AddBook extends Component {
               type="text"
               placeholder="Search by title or author"
               value={query}
-              onChange={(e) => this.updateQuery(e.target.value)}
+              onChange={(e) => {this.updateQuery(e.target.value)}}
             />
           </div>
         </div>
