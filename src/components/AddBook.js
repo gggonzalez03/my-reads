@@ -17,12 +17,27 @@ class AddBook extends Component {
 
   search = (query) => {
     if(query)
-      BooksAPI.search(query, 5).then((books) => {
-        if(books && !books.error)
-          this.setState({showingBooks:books})
+      BooksAPI.search(query, 5).then((searchedBooks) => {
+        if(searchedBooks && !searchedBooks.error)
+          this.mergeBooks(searchedBooks, this.props.currentBooks)
       })
     else 
       this.setState({showingBooks: null})
+  }
+
+  mergeBooks = (searchedBooks, currentBooks) => {
+    const currentBooksIds = currentBooks.map((cb) => cb.id)
+
+    let merged = searchedBooks.map((sb) => {
+      if(currentBooksIds.includes(sb.id))
+        sb = currentBooks.filter((cb) => cb.id === sb.id)[0]
+      else 
+        sb.shelf = "none"
+
+      return sb
+    })
+
+    this.setState({showingBooks:merged})
   }
 
   render() {

@@ -40,6 +40,7 @@ class BooksApp extends React.Component {
           path='/addbook'          
           render={() => (
             <AddBook
+              currentBooks={this.state.books}
               changeBookShelf={this.changeBookShelf}
             />
           )}
