@@ -180,7 +180,9 @@ body, .app {
   position: relative;
   flex-direction: column;
   background: white;
+  color: white;
   border-radius: .4em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   width: 40vw;
   left: calc(40vw / 2 * -1 + 70px);
   top: 50%;
@@ -195,7 +197,7 @@ body, .app {
   width: 0;
   height: 0;
   border: 20px solid transparent;
-  border-bottom-color:red;
+  border-bottom-color: #56d39f;
   border-top: 0;
   border-right: 0;
   margin-left: -10px;
@@ -203,7 +205,8 @@ body, .app {
 }
 
 .book-bubble-header {
-  background: red;
+  background: #56d39f;
+  font-size: 20px;
   flex: 1;
   padding: 0px 8px 0px 8px;
   border-radius: .4em .4em 0 0;
@@ -220,14 +223,14 @@ body, .app {
 
 .book-bubble-content {
   flex: 1;
-  background: #5675b9;
-  padding: 0px 8px 0px 8px;
+  background: #36404c;
+  padding: 4px 16px;
   border-radius: 0 0 .4em .4em;
   width: 100%;
 }
 
 .book-bubble-authors {
-  font-size: 12px;
+  font-size: 16px;
   display: block;
 }
 
@@ -238,4 +241,5 @@ body, .app {
 .book-bubble-desc {
   text-indent: 50px;
   text-align: justify;
+  font-size: 18px;
 }
