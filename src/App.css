@@ -172,3 +172,70 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* Book Bubble */
+/* http://leaverou.github.io/bubbly/ */
+
+.speech-bubble {
+  position: relative;
+  flex-direction: column;
+  background: white;
+  border-radius: .4em;
+  width: 40vw;
+  left: calc(40vw / 2 * -1 + 70px);
+  top: 50%;
+  z-index: 1
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left:50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-bottom-color:red;
+  border-top: 0;
+  border-right: 0;
+  margin-left: -10px;
+  margin-top: -20px;
+}
+
+.book-bubble-header {
+  background: red;
+  flex: 1;
+  padding: 0px 8px 0px 8px;
+  border-radius: .4em .4em 0 0;
+  text-align: center;
+  width: 100%;
+}
+
+.book-bubble-title {
+  margin: 0px;
+  padding: 0px;
+  padding-top: 8px;
+  margin-bottom: 0px;
+}
+
+.book-bubble-content {
+  flex: 1;
+  background: #5675b9;
+  padding: 0px 8px 0px 8px;
+  border-radius: 0 0 .4em .4em;
+  width: 100%;
+}
+
+.book-bubble-authors {
+  font-size: 12px;
+  display: block;
+}
+
+.book-bubble-rating {
+  text-align: center;
+}
+
+.book-bubble-desc {
+  text-indent: 50px;
+  text-align: justify;
+}
