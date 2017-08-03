@@ -6,7 +6,9 @@ const BookBubble = ({book}) => (
   <div className="speech-bubble">
     <div className="book-bubble-header">
       <h3 className="book-bubble-title" >{book.title}</h3>
-      <span className="book-bubble-authors">name name, name name</span>
+      <span className="book-bubble-authors">
+        {book.authors && book.authors.map((author, index) => `${author}${index===book.authors.length-1 ? "" : ", "}`)}
+      </span>
     </div>
     <div className="book-bubble-content">
       <div className="book-bubble-rating">
