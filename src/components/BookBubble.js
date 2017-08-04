@@ -1,25 +1,8 @@
 import React from 'react'
-import MdStar from 'react-icons/lib/md/star';
-import MdStarBorder from 'react-icons/lib/md/star-border';
 
-const BookBubble = ({book}) => (
+const BookBubble = ({ children }) => (
   <div className="speech-bubble">
-    <div className="book-bubble-header">
-      <h3 className="book-bubble-title" >{book.title}</h3>
-      <span className="book-bubble-authors">
-        {book.authors && book.authors.map((author, index) => `${author}${index===book.authors.length-1 ? "" : ", "}`)}
-      </span>
-    </div>
-    <div className="book-bubble-content">
-      <div className="book-bubble-rating">
-        <MdStar/>
-        <MdStarBorder/>
-        <MdStarBorder/>
-        <MdStarBorder/>
-        <MdStarBorder/>
-      </div>
-      <p className="book-bubble-desc">{book.description}</p>
-    </div>
+    {children}
   </div>
 )
 
