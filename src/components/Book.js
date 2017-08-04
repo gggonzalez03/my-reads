@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MdStar from 'react-icons/lib/md/star';
 import MdStarBorder from 'react-icons/lib/md/star-border';
-import BookBubble from './BookBubble'
+import HoverBubble from './HoverBubble'
 import BookShelfChanger from './BookShelfChanger';
 
 class Book extends Component {
@@ -24,7 +24,7 @@ class Book extends Component {
       <div className="book" onMouseEnter={this.showBookBubble} onMouseLeave={this.showBookBubble}>
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail && book.imageLinks.smallThumbnail}")` }}>
-            {bookBubble && <BookBubble>
+            {bookBubble && <HoverBubble>
                 <div className="book-bubble-header">
                   <h3 className="book-bubble-title" >{book.title}</h3>
                   <span className="book-bubble-authors">
@@ -41,7 +41,7 @@ class Book extends Component {
                   </div>
                   <p className="book-bubble-desc">{book.description}</p>
                 </div>
-              </BookBubble>}
+              </HoverBubble>}
           </div>
           <BookShelfChanger
             book={book}

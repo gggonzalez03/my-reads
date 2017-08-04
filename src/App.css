@@ -176,7 +176,7 @@ body, .app {
 /* Book Bubble */
 /* http://leaverou.github.io/bubbly/ */
 
-.speech-bubble {
+.hover-bubble {
   position: relative;
   flex-direction: column;
   background: white;
@@ -190,7 +190,7 @@ body, .app {
   z-index: 1
 }
 
-.speech-bubble:after {
+.hover-bubble:after {
   content: '';
   position: absolute;
   top: 0;
