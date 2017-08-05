@@ -177,32 +177,30 @@ body, .app {
 /* http://leaverou.github.io/bubbly/ */
 
 .hover-bubble {
-  position: relative;
+  position: absolute;
   flex-direction: column;
   background: white;
   color: white;
   opacity: .95;
   border-radius: .4em;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  width: 40vw;
-  left: calc(40vw / 2 * -1 + 70px);
-  top: 50%;
+  width: 50vw;
+  left: calc(50vw / 2 * -1 + 70px); /* 70px is half of the .book's width*/
+  top: 95%;
   z-index: 1
 }
 
-.hover-bubble:after {
-  content: '';
+.hover-bubble-cursor {
   position: absolute;
   top: 0;
   left:50%;
   width: 0;
   height: 0;
-  border: 20px solid transparent;
+  border: 10px solid transparent;
   border-bottom-color: #56d39f;
   border-top: 0;
-  border-right: 0;
   margin-left: -10px;
-  margin-top: -20px;
+  margin-top: -10px;
 }
 
 .book-bubble-header {

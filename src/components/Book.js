@@ -9,22 +9,34 @@ class Book extends Component {
     bookBubble: false
   }
 
-  showBookBubble = () => {
+  showBookBubble = (e) => {
+    // This is called to keep the original clientX and clientY
+    // values that were passed in this function
+    e.persist()
+    var x = (e.currentTarget.offsetLeft + (e.currentTarget.clientWidth/2))/window.innerWidth*100
+    var y = (e.currentTarget.offsetTop + (e.currentTarget.clientHeight/2))/window.innerHeight*100
+
     this.setState((state) => ({
-      bookBubble: !state.bookBubble
+      bookBubble: !state.bookBubble,
+      center: {
+        x: x,
+        y: y
+      }
+      
     }))
   }
 
   render() {
 
     const { book, changeBookShelf } = this.props
-    const { bookBubble } = this.state
+    const { bookBubble, center } = this.state
 
     return (
       <div className="book" onMouseEnter={this.showBookBubble} onMouseLeave={this.showBookBubble}>
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail && book.imageLinks.smallThumbnail}")` }}>
-            {bookBubble && <HoverBubble>
+            {bookBubble &&
+              <HoverBubble x={center.x} y={center.y}>
                 <div className="book-bubble-header">
                   <h3 className="book-bubble-title" >{book.title}</h3>
                   <span className="book-bubble-authors">
