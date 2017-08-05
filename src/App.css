@@ -178,15 +178,17 @@ body, .app {
 
 .hover-bubble {
   position: absolute;
+  display: flex;
   flex-direction: column;
   background: white;
   color: white;
   opacity: .95;
   border-radius: .4em;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  max-height: 40vh;
   width: 50vw;
   left: calc(50vw / 2 * -1 + 70px); /* 70px is half of the .book's width*/
-  top: 95%;
+  top: 102.5%;
   z-index: 1
 }
 
@@ -221,11 +223,22 @@ body, .app {
 }
 
 .book-bubble-content {
-  flex: 1;
+  flex: 6;
   background: #36404c;
   padding: 4px 16px;
   border-radius: 0 0 .4em .4em;
   width: 100%;
+  overflow-y: scroll;
+}
+
+.book-bubble-content::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent
+}
+
+.book-bubble-content::-webkit-scrollbar-thumb {
+    background-color: #1e1e1e;
+    border-radius: 5px;
 }
 
 .book-bubble-authors {
