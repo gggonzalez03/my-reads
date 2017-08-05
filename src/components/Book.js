@@ -14,7 +14,7 @@ class Book extends Component {
     // values that were passed in this function
     e.persist()
     var x = (e.currentTarget.offsetLeft + (e.currentTarget.clientWidth/2))/window.innerWidth*100
-    var y = (e.currentTarget.offsetTop + (e.currentTarget.clientHeight/2))/window.innerHeight*100
+    var y = (e.currentTarget.offsetTop/window.innerHeight*100)-window.pageYOffset/window.innerHeight*100
 
     this.setState((state) => ({
       bookBubble: !state.bookBubble,

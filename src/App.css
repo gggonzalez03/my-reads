@@ -192,19 +192,6 @@ body, .app {
   z-index: 1
 }
 
-.hover-bubble-cursor {
-  position: absolute;
-  top: 0;
-  left:50%;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-bottom-color: #56d39f;
-  border-top: 0;
-  margin-left: -10px;
-  margin-top: -10px;
-}
-
 .book-bubble-header {
   background: #56d39f;
   font-size: 20px;
