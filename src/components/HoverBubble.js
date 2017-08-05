@@ -5,12 +5,16 @@ class HoverBubble extends Component {
   state = {}
 
   componentWillMount = () => {
-    const { x, y } = this.props
+    const { eventCurrentTarget } = this.props
+
+    // coordinates of top left corner of the parent component
+    var x = (eventCurrentTarget.offsetLeft)/window.innerWidth*100-window.pageXOffset/window.innerWidth*100
+    var y = (eventCurrentTarget.offsetTop/window.innerHeight*100)-window.pageYOffset/window.innerHeight*100
 
     this.setBubblePosition(x, y)
   }
 
-  // Takes mouse coordinates
+  // Takes coordinates of the parent component
   setBubblePosition = (x, y) => {
     var top = false;
     if (y > 40) { // 40 the max-height of the bubble
