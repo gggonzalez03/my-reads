@@ -54,7 +54,7 @@ class HoverBubble extends Component {
 
 
     x /= (100/width)
-    this.setState({ x: x, y: y, maxHeight: maxHeight, top: top })
+    this.setState({ x: x, y: y, width: width, maxHeight: maxHeight, top: top })
   }
 
   render() {
