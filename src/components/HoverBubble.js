@@ -4,22 +4,32 @@ class HoverBubble extends Component {
 
   state = {}
 
-  componentWillMount = () => {
-    const { eventCurrentTarget, width, maxHeight } = this.props
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: this.props.width || 50,
+      maxHeight: this.props.maxHeight || 40
+    };
+  }
 
+  componentDidMount = () => {
+    const { eventCurrentTarget } = this.props
+    const { width, maxHeight } = this.state
     const { x, y } = this.getAbsoluteCoordinate( eventCurrentTarget.offsetLeft, eventCurrentTarget.offsetTop )
+    const hoverBubbleDimensions = this.getRelativeDimensions(this.hoverBubbleNode.clientWidth, this.hoverBubbleNode.clientHeight)
 
     this.setBubblePosition({
       x: x,
       y: y,
       width: width,
-      maxHeight: maxHeight
+      maxHeight: maxHeight,
+      topOffset: hoverBubbleDimensions.height
     })
   }
 
   getAbsoluteCoordinate = ( x, y ) => {
 
-    let points = {
+    const points = {
       x: (x-window.pageXOffset)/window.innerWidth*100,
       y: (y-window.pageYOffset)/window.innerHeight*100
     }
@@ -32,7 +42,7 @@ class HoverBubble extends Component {
     width = width/window.innerWidth*100
     height = height/window.innerHeight*100
 
-    let dimensions = {
+    const dimensions = {
       width: width,
       height: height
     }
@@ -41,15 +51,17 @@ class HoverBubble extends Component {
   }
 
   // Takes coordinates of the parent component
-  setBubblePosition = ({ x, y, width=50, maxHeight=40 }) => {
+  setBubblePosition = ({ x, y, width=50, maxHeight=40, topOffset=y }) => {
     var top = false;
 
+    //console.log(topOffset, y)
+
     if (y > maxHeight) { // 40 the max-height of the bubble
-      y = -190 // Top off set based on Bubble's parent element
+      y = topOffset*-1 // Top off set based on Bubble's parent element
       top = true
     }
     else {
-      y = 102.5
+      y = 20
     }
 
 
@@ -77,7 +89,7 @@ class HoverBubble extends Component {
         maxHeight: `${maxHeight}vh`,
         width: `${width}vw`,
         left: `-${x}vw`,
-        top: `${y}%`,
+        top: `${y}vh`,
         zIndex: 1
       },
       hoverBubbleCursorBottom: {
@@ -107,7 +119,7 @@ class HoverBubble extends Component {
 }
 
 return (
-  <div className="hover-bubble" style={styles.hoverBubble}>
+  <div className="hover-bubble" style={styles.hoverBubble} ref={(hoverBubbleNode) => { this.hoverBubbleNode = hoverBubbleNode }}>
     {children}
     <div className="hover-bubble-cursor" style={top ? styles.hoverBubbleCursorTop : styles.hoverBubbleCursorBottom}></div>
   </div>

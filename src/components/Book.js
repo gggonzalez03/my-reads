@@ -31,7 +31,7 @@ class Book extends Component {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail && book.imageLinks.smallThumbnail}")` }}>
             {bookBubble &&
-              <HoverBubble eventCurrentTarget={eventCurrentTarget}>
+              <HoverBubble eventCurrentTarget={eventCurrentTarget} width={50} maxHeight={40}>
                 <div className="book-bubble-header">
                   <h3 className="book-bubble-title" >{book.title}</h3>
                   <span className="book-bubble-authors">
