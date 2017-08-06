@@ -5,19 +5,46 @@ class HoverBubble extends Component {
   state = {}
 
   componentWillMount = () => {
-    const { eventCurrentTarget } = this.props
+    const { eventCurrentTarget, width, maxHeight } = this.props
 
-    // coordinates of top left corner of the parent component
-    var x = (eventCurrentTarget.offsetLeft)/window.innerWidth*100-window.pageXOffset/window.innerWidth*100
-    var y = (eventCurrentTarget.offsetTop/window.innerHeight*100)-window.pageYOffset/window.innerHeight*100
+    const { x, y } = this.getAbsoluteCoordinate( eventCurrentTarget.offsetLeft, eventCurrentTarget.offsetTop )
 
-    this.setBubblePosition(x, y)
+    this.setBubblePosition({
+      x: x,
+      y: y,
+      width: width,
+      maxHeight: maxHeight
+    })
+  }
+
+  getAbsoluteCoordinate = ( x, y ) => {
+
+    let points = {
+      x: (x-window.pageXOffset)/window.innerWidth*100,
+      y: (y-window.pageYOffset)/window.innerHeight*100
+    }
+
+    return points
+  }
+
+  getRelativeDimensions = ( width, height ) => {
+
+    width = width/window.innerWidth*100
+    height = height/window.innerHeight*100
+
+    let dimensions = {
+      width: width,
+      height: height
+    }
+
+    return dimensions
   }
 
   // Takes coordinates of the parent component
-  setBubblePosition = (x, y) => {
+  setBubblePosition = ({ x, y, width=50, maxHeight=40 }) => {
     var top = false;
-    if (y > 40) { // 40 the max-height of the bubble
+
+    if (y > maxHeight) { // 40 the max-height of the bubble
       y = -190 // Top off set based on Bubble's parent element
       top = true
     }
@@ -26,20 +53,32 @@ class HoverBubble extends Component {
     }
 
 
-    x /= 2
-    this.setState({ x: x, y: y, top: top })
+    x /= (100/width)
+    this.setState({ x: x, y: y, maxHeight: maxHeight, top: top })
   }
 
   render() {
 
     const { children } = this.props
 
-    const { x, y, top } = this.state
+    const { x, y, maxHeight, width, top } = this.state
 
+    // http://leaverou.github.io/bubbly/
     const styles = {
       hoverBubble: {
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'white',
+        color: 'white',
+        opacity: .95,
+        borderRadius: '.4em',
+        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+        maxHeight: `${maxHeight}vh`,
+        width: `${width}vw`,
         left: `-${x}vw`,
-        top: `${y}%`
+        top: `${y}%`,
+        zIndex: 1
       },
       hoverBubbleCursorBottom: {
         position: 'absolute',

@@ -174,23 +174,6 @@ body, .app {
 }
 
 /* Book Bubble */
-/* http://leaverou.github.io/bubbly/ */
-
-.hover-bubble {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background: white;
-  color: white;
-  opacity: .95;
-  border-radius: .4em;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  max-height: 40vh;
-  width: 50vw;
-  left: calc(50vw / 2 * -1 + 70px); /* 70px is half of the .book's width*/
-  top: 102.5%;
-  z-index: 1
-}
 
 .book-bubble-header {
   background: #56d39f;
