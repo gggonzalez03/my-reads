@@ -120,6 +120,7 @@ body, .app {
 }
 
 .book {
+  position: relative;
   width: 140px;
 }
 .book-title,

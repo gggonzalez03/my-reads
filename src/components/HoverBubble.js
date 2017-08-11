@@ -13,9 +13,8 @@ class HoverBubble extends Component {
   }
 
   componentDidMount = () => {
-    const { eventCurrentTarget } = this.props
     const { width, maxHeight } = this.state
-    const { x, y } = this.getAbsoluteCoordinate( eventCurrentTarget.offsetLeft, eventCurrentTarget.offsetTop )
+    const { x, y } = this.getAbsoluteCoordinate( this.hoverBubbleNode.parentNode.offsetLeft, this.hoverBubbleNode.parentNode.offsetTop )
     const hoverBubbleDimensions = this.getRelativeDimensions(this.hoverBubbleNode.clientWidth, this.hoverBubbleNode.clientHeight)
 
     this.setBubblePosition({
@@ -53,8 +52,6 @@ class HoverBubble extends Component {
   // Takes coordinates of the parent component
   setBubblePosition = ({ x, y, width=50, maxHeight=40, topOffset=y }) => {
     var top = false;
-
-    //console.log(topOffset, y)
 
     if (y > maxHeight) { // 40 the max-height of the bubble
       y = topOffset*-1 // Top off set based on Bubble's parent element
