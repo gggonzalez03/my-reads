@@ -25,6 +25,13 @@ class StarRating extends Component {
     })
   }
 
+  clearRating = () => {
+    this.setState({
+      selectedRating: 0,
+      hoveredRating: 0
+    })
+  }
+
   render() {
 
     let starState = Array(5).fill().map((_, index) => {
@@ -54,6 +61,7 @@ class StarRating extends Component {
 
           </span>
         ))}
+        <a style={{display: 'block', fontSize: '12px'}} onClick={() => {this.clearRating()}}>clear rating</a>
       </div>
     )
   }
