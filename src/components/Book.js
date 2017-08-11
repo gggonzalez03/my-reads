@@ -19,6 +19,17 @@ class Book extends Component {
     }))
   }
 
+  // Props are changed here because the book does not have
+  // to re-render when the ratings change as it will initialize the
+  // book bubble to be hidden
+  onSelectRating = (rating) => {
+    this.props.book.userRating = rating
+  }
+
+  onClearRating = () => {
+    this.props.book.userRating = 0
+  }
+
   render() {
 
     const { book, changeBookShelf } = this.props
@@ -38,7 +49,10 @@ class Book extends Component {
                 </div>
                 <div className="book-bubble-content">
                   <div className="book-bubble-rating">
-                    <StarRating initialSelectedRating={3}/>
+                    <StarRating
+                      initialSelectedRating={book.userRating}
+                      onSelectRating={this.onSelectRating}
+                      onClearRating={this.onClearRating}/>
                   </div>
                   <p className="book-bubble-desc">{book.description}</p>
                 </div>

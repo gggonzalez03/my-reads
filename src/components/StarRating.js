@@ -4,9 +4,14 @@ import MdStar from 'react-icons/lib/md/star'
 
 class StarRating extends Component {
 
-  state = {
-    hoveredRating: this.props.initialSelectedRating || 0,
-    selectedRating: this.props.initialSelectedRating || 0
+  state = {}
+
+  constructor(props) {
+    super()
+    this.state = {
+      hoveredRating: props.initialSelectedRating || 0,
+      selectedRating: props.initialSelectedRating || 0
+    }
   }
 
   hoverRating = (rating) => {
@@ -23,6 +28,8 @@ class StarRating extends Component {
     this.setState({
       selectedRating: rating
     })
+
+    this.props.onSelectRating(rating) != null && this.props.onSelectRating(rating)
   }
 
   clearRating = () => {
@@ -30,6 +37,8 @@ class StarRating extends Component {
       selectedRating: 0,
       hoveredRating: 0
     })
+
+    this.props.onClearRating() != null && this.props.onClearRating()
   }
 
   render() {
