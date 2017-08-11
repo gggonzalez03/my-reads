@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import MdStar from 'react-icons/lib/md/star';
-import MdStarBorder from 'react-icons/lib/md/star-border';
+import StarRating from './StarRating'
 import HoverBubble from './HoverBubble'
 import BookShelfChanger from './BookShelfChanger';
 
@@ -17,7 +16,6 @@ class Book extends Component {
     this.setState((state) => ({
       bookBubble: !state.bookBubble,
       eventCurrentTarget: eventCurrentTarget
-      
     }))
   }
 
@@ -40,11 +38,7 @@ class Book extends Component {
                 </div>
                 <div className="book-bubble-content">
                   <div className="book-bubble-rating">
-                    <MdStar />
-                    <MdStarBorder />
-                    <MdStarBorder />
-                    <MdStarBorder />
-                    <MdStarBorder />
+                    <StarRating selectedRating={4}/>
                   </div>
                   <p className="book-bubble-desc">{book.description}</p>
                 </div>
