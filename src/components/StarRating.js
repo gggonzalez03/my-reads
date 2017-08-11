@@ -4,7 +4,10 @@ import MdStar from 'react-icons/lib/md/star'
 
 class StarRating extends Component {
 
-  state = {}
+  state = {
+    hoveredRating: this.props.initialSelectedRating || 0,
+    selectedRating: this.props.initialSelectedRating || 0
+  }
 
   hoverRating = (rating) => {
     this.setState({
@@ -48,7 +51,7 @@ class StarRating extends Component {
             onClick={() => { this.selectRating(star.starRate)}}>
 
             {star.hovered ? <MdStar /> : <MdStarOutline />}
-            
+
           </span>
         ))}
       </div>

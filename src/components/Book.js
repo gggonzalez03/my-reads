@@ -38,7 +38,7 @@ class Book extends Component {
                 </div>
                 <div className="book-bubble-content">
                   <div className="book-bubble-rating">
-                    <StarRating selectedRating={4}/>
+                    <StarRating initialSelectedRating={3}/>
                   </div>
                   <p className="book-bubble-desc">{book.description}</p>
                 </div>
