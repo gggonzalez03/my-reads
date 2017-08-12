@@ -1,10 +1,11 @@
 import React from 'react'
+import changeCase from 'change-case'
 
 import Book from './Book'
 
 const BookShelf = ({ bookShelfTitle, books, changeBookShelf }) => (
-  <div className="bookshelf">
-    <h2 className="bookshelf-title">{bookShelfTitle}</h2>
+  <div className="bookshelf" id={changeCase.paramCase(bookShelfTitle)}>
+    <h2 className="bookshelf-title">{bookShelfTitle} ({books.length})</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
         {books.map((book) => (
