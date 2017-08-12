@@ -58,19 +58,29 @@ class StarRating extends Component {
       }
     })
 
+    const styles = {
+      clearRating: {
+        display: 'block',
+        fontSize: '12px',
+        cursor: 'pointer'
+      }
+    }
+
     return (
-      <div className="starRating" onMouseLeave={this.exitRating}>
-        {starState.map((star) => (
-          <span
-            key={star.starRate}
-            onMouseEnter={() => { this.hoverRating(star.starRate) }}
-            onClick={() => { this.selectRating(star.starRate)}}>
+      <div>
+        <div onMouseLeave={this.exitRating}>
+          {starState.map((star) => (
+            <span
+              key={star.starRate}
+              onMouseEnter={() => { this.hoverRating(star.starRate) }}
+              onClick={() => { this.selectRating(star.starRate)}}>
 
-            {star.hovered ? <MdStar /> : <MdStarOutline />}
+              {star.hovered ? <MdStar /> : <MdStarOutline />}
 
-          </span>
-        ))}
-        <a style={{display: 'block', fontSize: '12px'}} onClick={() => {this.clearRating()}}>clear rating</a>
+            </span>
+          ))}
+        </div>
+        <a style={styles.clearRating} onClick={() => {this.clearRating()}}>clear rating</a>
       </div>
     )
   }
