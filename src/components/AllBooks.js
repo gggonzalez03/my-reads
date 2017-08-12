@@ -5,7 +5,8 @@ import changeCase from 'change-case'
 import BookShelf from './BookShelf'
 
 const AllBooks = ({ books, changeBookShelf }) => {
-
+  
+  // Get distinct bookshelf titles that the books belong to
   const categories = [...new Set(books.map((book) => book.shelf))]
 
   return (<div className="list-books">

@@ -26,6 +26,8 @@ class HoverBubble extends Component {
     })
   }
 
+  // Gets the value of x and y in % based on current viewport size
+  // Takes x and y coordinates of the top left corner of an element
   getAbsoluteCoordinate = ( x, y ) => {
 
     const points = {
@@ -36,6 +38,8 @@ class HoverBubble extends Component {
     return points
   }
 
+  // Gets the value of width and height in % based on current viewport size
+  // Takes width and height of an element
   getRelativeDimensions = ( width, height ) => {
 
     width = width/window.innerWidth*100
@@ -49,7 +53,8 @@ class HoverBubble extends Component {
     return dimensions
   }
 
-  // Takes coordinates of the parent component
+  // Sets the position of the bubble
+  // All parameter values should be a percentage value
   setBubblePosition = ({ x, y, width=50, maxHeight=40, topOffset=y }) => {
     var top = false;
 
