@@ -49,7 +49,7 @@ class Book extends Component {
           {book.authors && book.authors.map((author, index) => `${author}${index === book.authors.length - 1 ? "" : ", "}`)}
         </div>
         {bookBubble &&
-          <HoverBubble width={50} maxHeight={40}>
+          <HoverBubble>
             <div className="book-bubble-header">
               <h3 className="book-bubble-title" >{book.title}</h3>
               <span className="book-bubble-authors">

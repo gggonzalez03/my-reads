@@ -14,15 +14,16 @@ class HoverBubble extends Component {
 
   componentDidMount = () => {
     const { width, maxHeight } = this.state
-    const { x, y } = this.getAbsoluteCoordinate( this.hoverBubbleNode.parentNode.offsetLeft, this.hoverBubbleNode.parentNode.offsetTop )
+    const parentNodeCoordinates = this.getAbsoluteCoordinate( this.hoverBubbleNode.parentNode.offsetLeft, this.hoverBubbleNode.parentNode.offsetTop )
+    const parentNodeDimensions = this.getRelativeDimensions(this.hoverBubbleNode.parentNode.clientWidth, this.hoverBubbleNode.parentNode.clientHeight)
     const hoverBubbleDimensions = this.getRelativeDimensions(this.hoverBubbleNode.clientWidth, this.hoverBubbleNode.clientHeight)
 
     this.setBubblePosition({
-      x: x,
-      y: y,
       width: width,
       maxHeight: maxHeight,
-      topOffset: hoverBubbleDimensions.height
+      hoverBubbleDimensions: hoverBubbleDimensions,
+      parentNodeCoordinates: parentNodeCoordinates,
+      parentNodeDimensions: parentNodeDimensions
     })
   }
 
@@ -55,27 +56,33 @@ class HoverBubble extends Component {
 
   // Sets the position of the bubble
   // All parameter values should be a percentage value
-  setBubblePosition = ({ x, y, width=50, maxHeight=40, topOffset=y }) => {
-    var top = false;
+  setBubblePosition = ({ width=50, maxHeight=40, hoverBubbleDimensions, parentNodeCoordinates, parentNodeDimensions }) => {
+    var top = false
 
-    if (y > maxHeight) { // 40 the max-height of the bubble
-      y = topOffset*-1 // Top off set based on Bubble's parent element
+    let offSetY = parentNodeDimensions.height
+    let offSetX = parentNodeCoordinates.x /(100/width)
+
+
+
+    if (parentNodeCoordinates.y > maxHeight) {
+      offSetY = hoverBubbleDimensions.height*-1 // Top off set based on Bubble's parent element
       top = true
     }
-    else {
-      y = 20
-    }
 
-
-    x /= (100/width)
-    this.setState({ x: x, y: y, width: width, maxHeight: maxHeight, top: top })
+    this.setState({
+      offSetX: offSetX,
+      offSetY: offSetY,
+      width: width,
+      maxHeight: maxHeight,
+      top: top
+    })
   }
 
   render() {
 
     const { children } = this.props
 
-    const { x, y, maxHeight, width, top } = this.state
+    const { offSetX, offSetY, maxHeight, width, top } = this.state
 
     // http://leaverou.github.io/bubbly/
     const styles = {
@@ -90,14 +97,14 @@ class HoverBubble extends Component {
         boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
         maxHeight: `${maxHeight}vh`,
         width: `${width}vw`,
-        left: `-${x}vw`,
-        top: `${y}vh`,
+        left: `-${offSetX}vw`,
+        top: `${offSetY}vh`,
         zIndex: 1
       },
       hoverBubbleCursorBottom: {
         position: 'absolute',
         top: 0,
-        left: `calc(${x}vw + 35px)`,
+        left: `calc(${offSetX}vw)`,
         width: 0,
         height: 0,
         border: '10px solid transparent',
@@ -109,7 +116,7 @@ class HoverBubble extends Component {
       hoverBubbleCursorTop: {
         position: 'absolute',
         bottom: 0,
-        left: `calc(${x}vw + 35px)`,
+        left: `calc(${offSetX}vw)`,
         width: 0,
         height: 0,
         border: '10px solid transparent',
